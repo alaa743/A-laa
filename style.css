@@ -39,7 +39,7 @@ body {
     position: relative;
     overflow: hidden;
 
-    background: url('../Lolawork/image/background.jpg') center/cover no-repeat;
+    background: url('./background.jpg') center/cover no-repeat;
 
     animation: cinematicMove 25s ease-in-out infinite alternate;
 }
