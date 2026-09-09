@@ -1,199 +1,548 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" class="no-js">
 
 <head>
     <meta charset="UTF-8">
+    <script>document.documentElement.classList.remove('no-js');</script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A'laa Hany | Portfolio</title>
+    <meta name="theme-color" content="#12060a">
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Inter:wght@300;400;700&display=swap"
+    <title>A'laa Hany Ibrahim | Front-End Web Developer</title>
+    <meta name="description"
+        content="Portfolio of A'laa Hany Ibrahim — Front-End Web Developer and Archaeological Information Systems student at Cairo University, building responsive, user-friendly websites with HTML, CSS and JavaScript.">
+    <meta name="author" content="A'laa Hany Ibrahim">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="A'laa Hany Ibrahim | Front-End Web Developer">
+    <meta property="og:description"
+        content="Front-End Web Developer building responsive, user-friendly websites with HTML, CSS and JavaScript.">
+    <meta property="og:image" content="alaa.jpg">
+    <meta property="og:url" content="https://alaa743.github.io/A-laa/">
+
+    <link rel="icon"
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2312060a'/><text x='50' y='72' font-size='64' font-family='Georgia,serif' font-weight='700' fill='%23ff4d6d' text-anchor='middle'>A</text></svg>">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Outfit:wght@300;400;500;600;700;800&family=Inter:wght@300;400;500;600&display=swap"
         rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- ================= NAVBAR ================= -->
-    <nav>
-        <div class="logo">A'laa</div>
-        <div class="nav-links">
-            <a href="#home" class="active">Home</a>
-            <a href="#about">About</a>
-            <a href="#education">Education</a>
-            <a href="#skills">Skills</a>
-            <a href="#projects">Projects</a>
-            <a href="#contact">Contact</a>
-        </div>
-    </nav>
+    <!-- Scroll progress -->
+    <div class="scroll-progress" aria-hidden="true"><span id="progressBar"></span></div>
 
-    <!-- ================= HERO ================= -->
-    <section class="hero" id="home">
-        <div class="hero-content">
-            <h2 class="spanish-intro">𝓗𝓸𝓵𝓪, 𝓶𝓲 𝓷𝓸𝓶𝓫𝓻𝓮 𝓮𝓼 𝓐'𝓵𝓪𝓪</h2>
-
-            <div class="roles">
-                <span>Programmer</span> • <span>Graphic Designer</span> • <span>Web Developer</span>
-            </div>
-
-            <p class="description">
-                I create websites and designs that look great and work perfectly.
-            </p>
-
-            <!-- FIXED BUTTON -->
-            <a href="#contact" class="btn-primary">Contact Me ↗</a>
-        </div>
-    </section>
-
-    <!-- ================= SOCIAL ================= -->
-    <div class="social-icons">
-        <a href="https://www.linkedin.com" target="_blank" class="icon linkedin">
-            <i class="fa-brands fa-linkedin-in"></i>
-            <span>LinkedIn</span>
-        </a>
-
-        <a href="https://www.instagram.com" target="_blank" class="icon instagram">
-            <i class="fa-brands fa-instagram"></i>
-            <span>Instagram</span>
-        </a>
-
-        <a href="https://www.facebook.com" target="_blank" class="icon facebook">
-            <i class="fa-brands fa-facebook-f"></i>
-            <span>Facebook</span>
-        </a>
+    <!-- Ambient background -->
+    <div class="ambient" aria-hidden="true">
+        <span class="orb orb-1"></span>
+        <span class="orb orb-2"></span>
+        <span class="orb orb-3"></span>
+        <span class="grain"></span>
     </div>
 
-    <!-- ================= ABOUT ================= -->
-    <section class="section about-section" id="about">
-        <div class="container">
-            <div class="about-grid">
-                <div class="about-text-box">
-                    <h2 class="section-title">About Me</h2>
+    <div class="cursor-glow" id="cursorGlow" aria-hidden="true"></div>
 
-                    <p>
-                        My name is <strong>A’laa Hany</strong>, an AIS student at Cairo University.
-                        I am passionate about web development and creative design.
+    <!-- ================= NAVBAR ================= -->
+    <header class="nav-wrap" id="navbar">
+        <nav class="nav" aria-label="Main navigation">
+            <a href="#home" class="logo" aria-label="A'laa Hany — home">
+                <span class="logo-mark" aria-hidden="true">&gt;&lt;</span>
+                <span class="logo-text">A&rsquo;laa&nbsp;Hany</span>
+            </a>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home" class="nav-link is-active">Home</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+                <li><a href="#experience" class="nav-link">Experience</a></li>
+                <li><a href="#education" class="nav-link">Education</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#projects" class="nav-link">Projects</a></li>
+                <li><a href="#contact" class="nav-link">Contact</a></li>
+            </ul>
+
+            <div class="nav-actions">
+                <a class="btn btn-ghost btn-sm" href="Alaa-Hany-CV.pdf" download>
+                    <i class="fa-solid fa-download" aria-hidden="true"></i> CV
+                </a>
+                <button class="nav-toggle" id="navToggle" aria-label="Open menu" aria-expanded="false"
+                    aria-controls="navLinks">
+                    <span></span><span></span><span></span>
+                </button>
+            </div>
+        </nav>
+    </header>
+
+    <main id="main">
+
+        <!-- ================= HERO ================= -->
+        <section class="hero" id="home">
+            <div class="container hero-grid">
+
+                <div class="hero-copy">
+                    <p class="eyebrow reveal">
+                        <span class="dot" aria-hidden="true"></span>
+                        Available for internships &amp; freelance
                     </p>
 
-                    <div class="about-highlights">
-                        <div class="highlight-item"><i class="fa-solid fa-code"></i> C++ & Python</div>
-                        <div class="highlight-item"><i class="fa-solid fa-language"></i> EN (B2) / ES (B1)</div>
+                    <p class="script-hello reveal" aria-label="Hola, mi nombre es A'laa">Hola, mi nombre es</p>
+
+                    <h1 class="hero-name reveal">A&rsquo;laa <span class="grad">Hany</span></h1>
+
+                    <p class="hero-role reveal" aria-live="polite">
+                        <span class="type" id="typed">Front-End Web Developer</span><span class="caret"
+                            aria-hidden="true"></span>
+                    </p>
+
+                    <p class="hero-desc reveal">
+                        Archaeological Information Systems student at Cairo University, turning ideas into
+                        responsive, accessible interfaces with <strong>HTML</strong>, <strong>CSS</strong> and
+                        <strong>JavaScript</strong>.
+                    </p>
+
+                    <div class="hero-cta reveal">
+                        <a href="#projects" class="btn btn-primary">
+                            View my work <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-outline">
+                            <i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Get in touch
+                        </a>
                     </div>
 
-                    <p>
-                        I thrive in fast-paced, collaborative environments and love building clean UI experiences.
-                    </p>
+                    <ul class="hero-social reveal" aria-label="Social links">
+                        <li><a href="https://github.com/alaa743" target="_blank" rel="noopener" data-label="GitHub"
+                                aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a></li>
+                        <li><a href="https://www.linkedin.com/in/alaa-hany-73a61a338/" target="_blank" rel="noopener"
+                                data-label="LinkedIn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"
+                                    aria-hidden="true"></i></a></li>
+                        <li><a href="mailto:alaahany894@gmail.com" data-label="Email" aria-label="Email"><i
+                                    class="fa-solid fa-envelope" aria-hidden="true"></i></a></li>
+                    </ul>
+                </div>
+
+                <div class="hero-visual reveal">
+                    <div class="portrait-stage" data-tilt>
+                        <span class="ring ring-1" aria-hidden="true"></span>
+                        <span class="ring ring-2" aria-hidden="true"></span>
+                        <div class="portrait-frame">
+                            <img src="alaa.jpg" alt="Portrait of A'laa Hany Ibrahim" width="900" height="1106">
+                        </div>
+                        <div class="float-badge badge-a">
+                            <i class="fa-solid fa-code" aria-hidden="true"></i> Front-End
+                        </div>
+                        <div class="float-badge badge-b">
+                            <i class="fa-solid fa-location-dot" aria-hidden="true"></i> Cairo, EG
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
 
-    <!-- ================= EDUCATION ================= -->
-    <section class="section education-section" id="education">
-        <div class="container">
-            <h2 class="section-title center">Education</h2>
-
-            <div class="edu-card">
-                <div class="edu-header">
-                    <h3>Cairo University</h3>
-                    <span class="year-badge">2025 – Present</span>
-                </div>
-
-                <h4>Bachelor’s Degree – AIS (Applied Information Systems)</h4>
-
-                <ul class="edu-list">
-                    <li>Programming Fundamentals</li>
-                    <li>Web Development & Database Systems</li>
-                    <li>Software Engineering Basics</li>
-                </ul>
+            <div class="hero-stats container">
+                <div class="stat reveal"><span class="stat-num" data-count="3">0</span><span class="stat-label">Languages
+                        spoken</span></div>
+                <div class="stat reveal"><span class="stat-num" data-count="2">0</span><span class="stat-label">Part-time
+                        roles</span></div>
+                <div class="stat reveal"><span class="stat-num" data-count="2">0</span><span
+                        class="stat-label">Certificates</span></div>
+                <div class="stat reveal"><span class="stat-num" data-count="2028">0</span><span
+                        class="stat-label">Expected graduation</span></div>
             </div>
-        </div>
-    </section>
 
-    <!-- ================= SKILLS ================= -->
-    <section class="section skills-section" id="skills">
-        <div class="container">
-            <h2 class="section-title center">Skills</h2>
+            <a href="#about" class="scroll-cue" aria-label="Scroll to about section">
+                <span class="mouse" aria-hidden="true"><span></span></span>
+                <span class="scroll-cue-text">Scroll</span>
+            </a>
+        </section>
 
-            <div class="skills-grid">
-                <div class="skill-category">
-                    <h3>Coding</h3>
-                    <div class="skill-tag">C++</div>
-                    <div class="skill-tag">Python</div>
-                    <div class="skill-tag">JavaScript</div>
-                </div>
+        <!-- ================= ABOUT ================= -->
+        <section class="section" id="about">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="section-kicker">01 — About</p>
+                    <h2 class="section-title">Career objective</h2>
+                </header>
 
-                <div class="skill-category">
-                    <h3>Design</h3>
-                    <div class="skill-tag">HTML5</div>
-                    <div class="skill-tag">CSS3</div>
-                    <div class="skill-tag">UI/UX</div>
-                </div>
+                <div class="about-grid">
+                    <article class="card about-main reveal">
+                        <p>
+                            Motivated <strong>Archaeological Information Systems</strong> student with a strong
+                            foundation in HTML, CSS and JavaScript. I'm passionate about building responsive,
+                            user-friendly websites while continuously sharpening my web development skills.
+                        </p>
+                        <p>
+                            I've completed multiple front-end projects and I'm eager to gain practical experience,
+                            contribute to real-world applications, and grow as a Front-End Web Developer.
+                        </p>
 
-                <div class="skill-category">
-                    <h3>Soft Skills</h3>
-                    <div class="skill-tag">Problem Solving</div>
-                    <div class="skill-tag">Teamwork</div>
-                    <div class="skill-tag">Adaptability</div>
+                        <ul class="chips" aria-label="Quick facts">
+                            <li class="chip"><i class="fa-solid fa-graduation-cap" aria-hidden="true"></i> Cairo
+                                University</li>
+                            <li class="chip"><i class="fa-solid fa-location-dot" aria-hidden="true"></i> 15 May City,
+                                Cairo</li>
+                            <li class="chip"><i class="fa-solid fa-cake-candles" aria-hidden="true"></i> 19 May 2006
+                            </li>
+                            <li class="chip"><i class="fa-brands fa-git-alt" aria-hidden="true"></i> Git &amp; GitHub
+                            </li>
+                        </ul>
+                    </article>
+
+                    <article class="card about-langs reveal">
+                        <h3 class="card-title"><i class="fa-solid fa-language" aria-hidden="true"></i> Languages</h3>
+
+                        <div class="lang">
+                            <div class="lang-head"><span>Arabic</span><span class="lang-level">Native</span></div>
+                            <div class="bar"><span data-fill="100" style="--w:100%"></span></div>
+                        </div>
+                        <div class="lang">
+                            <div class="lang-head"><span>English</span><span class="lang-level">B1</span></div>
+                            <div class="bar"><span data-fill="60" style="--w:60%"></span></div>
+                        </div>
+                        <div class="lang">
+                            <div class="lang-head"><span>Spanish</span><span class="lang-level">A1</span></div>
+                            <div class="bar"><span data-fill="25" style="--w:25%"></span></div>
+                        </div>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ================= PROJECTS ================= -->
-    <section class="section projects-section" id="projects">
-        <div class="container">
-            <h2 class="section-title center">Projects</h2>
+        <!-- ================= EXPERIENCE ================= -->
+        <section class="section" id="experience">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="section-kicker">02 — Experience</p>
+                    <h2 class="section-title">Where I&rsquo;ve worked</h2>
+                </header>
 
-            <div class="projects-grid">
-                <div class="project-card">
-                    <div class="p-content">
+                <ol class="timeline">
+                    <li class="tl-item reveal">
+                        <span class="tl-dot" aria-hidden="true"></span>
+                        <div class="card tl-card">
+                            <div class="tl-head">
+                                <h3>Assistant Teacher</h3>
+                                <span class="badge">Feb 2026 &ndash; Present</span>
+                            </div>
+                            <p class="tl-meta">Part-time</p>
+                            <ul class="bullets">
+                                <li>Assisted in delivering practical sessions and supporting students during lectures.
+                                </li>
+                                <li>Helped prepare educational materials and classroom activities.</li>
+                            </ul>
+                        </div>
+                    </li>
+
+                    <li class="tl-item reveal">
+                        <span class="tl-dot" aria-hidden="true"></span>
+                        <div class="card tl-card">
+                            <div class="tl-head">
+                                <h3>Customer Service</h3>
+                                <span class="badge">Feb 2026 &ndash; Present</span>
+                            </div>
+                            <p class="tl-meta">Part-time at <strong>IPTV</strong></p>
+                            <ul class="bullets">
+                                <li>Responded to customer inquiries through online communication channels.</li>
+                                <li>Resolved issues efficiently while maintaining high customer satisfaction.</li>
+                                <li>Documented interactions and escalated technical issues when necessary.</li>
+                                <li>Built strong communication, problem-solving and multitasking skills in a fast-paced
+                                    environment.</li>
+                            </ul>
+                        </div>
+                    </li>
+                </ol>
+            </div>
+        </section>
+
+        <!-- ================= EDUCATION ================= -->
+        <section class="section" id="education">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="section-kicker">03 — Education</p>
+                    <h2 class="section-title">Study &amp; certificates</h2>
+                </header>
+
+                <div class="edu-grid">
+                    <article class="card edu-card reveal">
+                        <div class="edu-top">
+                            <span class="edu-icon" aria-hidden="true"><i class="fa-solid fa-graduation-cap"></i></span>
+                            <span class="badge">2024 &ndash; 2028</span>
+                        </div>
+                        <h3>Bachelor of Archaeology</h3>
+                        <p class="edu-org">Cairo University</p>
+                        <p class="edu-major"><strong>Major:</strong> Archaeological Information Systems</p>
+                    </article>
+
+                    <article class="card edu-card reveal">
+                        <div class="edu-top">
+                            <span class="edu-icon" aria-hidden="true"><i class="fa-solid fa-certificate"></i></span>
+                            <span class="badge">Nov 2024</span>
+                        </div>
+                        <h3>International Italian&ndash;Egyptian Workshop</h3>
+                        <p class="edu-org">Certificate of participation</p>
+                    </article>
+
+                    <article class="card edu-card reveal">
+                        <div class="edu-top">
+                            <span class="edu-icon" aria-hidden="true"><i class="fa-solid fa-lightbulb"></i></span>
+                            <span class="badge">Oct 2025</span>
+                        </div>
+                        <h3>CU&ndash;AI Hackathon 2025</h3>
+                        <p class="edu-org">Cairo University</p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= SKILLS ================= -->
+        <section class="section" id="skills">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="section-kicker">04 — Skills</p>
+                    <h2 class="section-title">What I work with</h2>
+                </header>
+
+                <div class="skills-grid">
+                    <article class="card skill-card reveal">
+                        <h3 class="card-title"><i class="fa-solid fa-code" aria-hidden="true"></i> Front-End</h3>
+                        <ul class="tags">
+                            <li class="tag"><i class="fa-brands fa-html5" aria-hidden="true"></i> HTML5</li>
+                            <li class="tag"><i class="fa-brands fa-css3-alt" aria-hidden="true"></i> CSS3</li>
+                            <li class="tag"><i class="fa-brands fa-js" aria-hidden="true"></i> JavaScript</li>
+                            <li class="tag"><i class="fa-solid fa-mobile-screen" aria-hidden="true"></i> Responsive</li>
+                            <li class="tag"><i class="fa-solid fa-pen-ruler" aria-hidden="true"></i> UI/UX</li>
+                        </ul>
+                    </article>
+
+                    <article class="card skill-card reveal">
+                        <h3 class="card-title"><i class="fa-solid fa-terminal" aria-hidden="true"></i> Programming
+                            &amp; Data</h3>
+                        <ul class="tags">
+                            <li class="tag"><i class="fa-brands fa-python" aria-hidden="true"></i> Python</li>
+                            <li class="tag"><i class="fa-solid fa-c" aria-hidden="true"></i> C / C++</li>
+                            <li class="tag"><i class="fa-solid fa-cubes" aria-hidden="true"></i> OOP</li>
+                            <li class="tag"><i class="fa-solid fa-database" aria-hidden="true"></i> SQL</li>
+                            <li class="tag"><i class="fa-brands fa-git-alt" aria-hidden="true"></i> Git / GitHub</li>
+                        </ul>
+                    </article>
+
+                    <article class="card skill-card reveal">
+                        <h3 class="card-title"><i class="fa-solid fa-heart" aria-hidden="true"></i> Soft Skills</h3>
+                        <ul class="tags">
+                            <li class="tag">Problem solving</li>
+                            <li class="tag">Communication</li>
+                            <li class="tag">Team collaboration</li>
+                            <li class="tag">Quick learner</li>
+                            <li class="tag">Time management</li>
+                            <li class="tag">Adaptability</li>
+                            <li class="tag">Attention to detail</li>
+                        </ul>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- ================= PROJECTS ================= -->
+        <section class="section" id="projects">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="section-kicker">05 — Projects</p>
+                    <h2 class="section-title">Selected work</h2>
+                </header>
+
+                <article class="card project-feature reveal" data-tilt data-tilt-max="4">
+                    <div class="pf-body">
+                        <span class="badge badge-accent">Featured</span>
+                        <h3>Aman Bazaar</h3>
+                        <p class="pf-sub">Ancient Luxury &amp; Artifacts</p>
+                        <p>
+                            A responsive e-commerce website for a cultural bazaar selling handmade artifacts,
+                            souvenirs and traditional products. Designed an intuitive shopping experience with
+                            product browsing, category organization and a modern interface built on core front-end
+                            technologies.
+                        </p>
+                        <ul class="tags small">
+                            <li class="tag">HTML</li>
+                            <li class="tag">CSS</li>
+                            <li class="tag">JavaScript</li>
+                            <li class="tag">Responsive</li>
+                        </ul>
+                        <div class="pf-links">
+                            <a class="btn btn-primary btn-sm" href="https://alaa743.github.io/aman-bazaar/index.html"
+                                target="_blank" rel="noopener">
+                                Live demo <i class="fa-solid fa-arrow-up-right-from-square" aria-hidden="true"></i>
+                            </a>
+                            <a class="btn btn-outline btn-sm" href="https://github.com/alaa743" target="_blank"
+                                rel="noopener">
+                                <i class="fa-brands fa-github" aria-hidden="true"></i> Source
+                            </a>
+                        </div>
+                    </div>
+                    <div class="pf-visual" aria-hidden="true">
+                        <div class="browser">
+                            <div class="browser-bar"><span></span><span></span><span></span></div>
+                            <div class="browser-body">
+                                <div class="sk sk-hero"></div>
+                                <div class="sk-row">
+                                    <div class="sk sk-card"></div>
+                                    <div class="sk sk-card"></div>
+                                    <div class="sk sk-card"></div>
+                                </div>
+                                <div class="sk sk-line"></div>
+                                <div class="sk sk-line short"></div>
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <div class="projects-grid">
+                    <article class="card project-card reveal">
+                        <span class="p-icon" aria-hidden="true"><i class="fa-solid fa-user-astronaut"></i></span>
                         <h3>Personal Portfolio</h3>
-                        <p>Modern responsive design with glassmorphism.</p>
-                        <span class="p-tech">HTML • CSS • JS</span>
-                    </div>
-                </div>
+                        <p>This site — an animated, fully responsive single-page portfolio with scroll-driven
+                            reveals, a dark glass design system and accessible markup.</p>
+                        <ul class="tags small">
+                            <li class="tag">HTML</li>
+                            <li class="tag">CSS</li>
+                            <li class="tag">JavaScript</li>
+                        </ul>
+                        <a class="p-link" href="https://github.com/alaa743" target="_blank" rel="noopener">
+                            View source <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
 
-                <div class="project-card">
-                    <div class="p-content">
-                        <h3>Landing Page</h3>
-                        <p>High-conversion UI focused on user experience.</p>
-                        <span class="p-tech">Frontend</span>
-                    </div>
-                </div>
+                    <article class="card project-card reveal">
+                        <span class="p-icon" aria-hidden="true"><i class="fa-solid fa-flask"></i></span>
+                        <h3>Practice Builds</h3>
+                        <p>Landing pages, layout challenges and JavaScript exercises I build to sharpen my front-end
+                            fundamentals — all published openly.</p>
+                        <ul class="tags small">
+                            <li class="tag">Flexbox</li>
+                            <li class="tag">Grid</li>
+                            <li class="tag">DOM</li>
+                        </ul>
+                        <a class="p-link" href="https://github.com/alaa743?tab=repositories" target="_blank"
+                            rel="noopener">
+                            Browse repos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
 
-                <div class="project-card">
-                    <div class="p-content">
-                        <h3>Contact System</h3>
-                        <p>JS validation engine for user data handling.</p>
-                        <span class="p-tech">JavaScript</span>
-                    </div>
+                    <article class="card project-card project-cta reveal">
+                        <span class="p-icon" aria-hidden="true"><i class="fa-solid fa-seedling"></i></span>
+                        <h3>Next up</h3>
+                        <p>I'm currently learning deeper JavaScript patterns and SQL, and looking for a front-end
+                            internship where I can contribute to real products.</p>
+                        <a class="p-link" href="#contact">
+                            Let&rsquo;s talk <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                        </a>
+                    </article>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- ================= CONTACT ================= -->
-    <section class="section contact-section" id="contact">
-        <div class="container">
-            <div class="contact-box">
-                <h2 class="section-title">Get In Touch</h2>
+        <!-- ================= CONTACT ================= -->
+        <section class="section" id="contact">
+            <div class="container">
+                <header class="section-head reveal">
+                    <p class="section-kicker">06 — Contact</p>
+                    <h2 class="section-title">Let&rsquo;s build something</h2>
+                </header>
 
-                <div class="contact-info">
-                    <div class="c-item"><i class="fa-solid fa-envelope"></i> alaahany894@gmail.com</div>
-                    <div class="c-item"><i class="fa-solid fa-phone"></i> 010121330890</div>
-                    <div class="c-item"><i class="fa-solid fa-location-dot"></i> Cairo, Egypt</div>
+                <div class="contact-grid">
+                    <div class="contact-side">
+                        <ul class="contact-list">
+                            <li class="card contact-item reveal">
+                                <span class="c-icon" aria-hidden="true"><i class="fa-solid fa-envelope"></i></span>
+                                <div>
+                                    <p class="c-label">Email</p>
+                                    <a href="mailto:alaahany894@gmail.com">alaahany894@gmail.com</a>
+                                </div>
+                                <button class="copy-btn" type="button" data-copy="alaahany894@gmail.com"
+                                    aria-label="Copy email address"><i class="fa-regular fa-copy"
+                                        aria-hidden="true"></i></button>
+                            </li>
+                            <li class="card contact-item reveal">
+                                <span class="c-icon" aria-hidden="true"><i class="fa-solid fa-phone"></i></span>
+                                <div>
+                                    <p class="c-label">Phone</p>
+                                    <a href="tel:+201012130809">+20 101 213 0809</a>
+                                </div>
+                                <button class="copy-btn" type="button" data-copy="+201012130809"
+                                    aria-label="Copy phone number"><i class="fa-regular fa-copy"
+                                        aria-hidden="true"></i></button>
+                            </li>
+                            <li class="card contact-item reveal">
+                                <span class="c-icon" aria-hidden="true"><i class="fa-solid fa-location-dot"></i></span>
+                                <div>
+                                    <p class="c-label">Location</p>
+                                    <span>15 May City, Cairo, Egypt</span>
+                                </div>
+                            </li>
+                        </ul>
+
+                        <div class="socials reveal">
+                            <a href="https://github.com/alaa743" target="_blank" rel="noopener" class="social-btn"
+                                aria-label="GitHub"><i class="fa-brands fa-github" aria-hidden="true"></i></a>
+                            <a href="https://www.linkedin.com/in/alaa-hany-73a61a338/" target="_blank" rel="noopener"
+                                class="social-btn" aria-label="LinkedIn"><i class="fa-brands fa-linkedin-in"
+                                    aria-hidden="true"></i></a>
+                            <a href="Alaa-Hany-CV.pdf" download class="social-btn" aria-label="Download CV"><i
+                                    class="fa-solid fa-file-arrow-down" aria-hidden="true"></i></a>
+                        </div>
+                    </div>
+
+                    <form class="card contact-form reveal" id="contactForm" novalidate>
+                        <h3 class="card-title">Send a message</h3>
+
+                        <div class="field">
+                            <label for="name">Name</label>
+                            <input type="text" id="name" name="name" placeholder="Your name" required>
+                            <p class="error" data-for="name"></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="you@example.com" required>
+                            <p class="error" data-for="email"></p>
+                        </div>
+
+                        <div class="field">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="5" placeholder="Tell me about your project…"
+                                required></textarea>
+                            <p class="error" data-for="message"></p>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">
+                            Send message <i class="fa-solid fa-paper-plane" aria-hidden="true"></i>
+                        </button>
+                        <p class="form-note" id="formNote" role="status"></p>
+                    </form>
                 </div>
             </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- ================= FOOTER ================= -->
     <footer class="footer">
-        <p>© 2026 A’laa Hany. Built with passion & code.</p>
+        <div class="container footer-inner">
+            <p class="footer-sign">A&rsquo;laa Hany</p>
+            <p class="footer-copy">&copy; <span id="year">2026</span> A&rsquo;laa Hany Ibrahim — Built with passion
+                &amp; code.</p>
+            <a href="#home" class="footer-top">Back to top <i class="fa-solid fa-arrow-up" aria-hidden="true"></i></a>
+        </div>
     </footer>
 
+    <button class="to-top" id="toTop" aria-label="Back to top">
+        <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js" defer></script>
 </body>
 
 </html>
