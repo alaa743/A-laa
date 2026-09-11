@@ -17,11 +17,10 @@
     <meta property="og:title" content="A'laa Hany Ibrahim | Front-End Web Developer">
     <meta property="og:description"
         content="Front-End Web Developer building responsive, user-friendly websites with HTML, CSS and JavaScript.">
-    <meta property="og:image" content="alaa.jpg">
     <meta property="og:url" content="https://alaa743.github.io/A-laa/">
 
     <link rel="icon"
-        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='24' fill='%2312060a'/><text x='50' y='72' font-size='64' font-family='Georgia,serif' font-weight='700' fill='%23ff4d6d' text-anchor='middle'>A</text></svg>">
+        href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' gradientUnits='userSpaceOnUse' x1='-9.15' y1='15.85' x2='109.15' y2='84.15'><stop offset='0' stop-color='%23ff4d6d'/><stop offset='.45' stop-color='%23ff8fa3'/><stop offset='1' stop-color='%23e8c39e'/></linearGradient></defs><rect width='100' height='100' rx='28.95' fill='url(%23g)'/><path fill='%232a0710' transform='translate(50 50) scale(1.8) translate(-51.18 -49.96)' d='M42 49.96L31.36 45.84L31.36 39.76L50.56 47.60L50.56 52.32L31.36 60.16L31.36 54.08M71 54.08L71 60.16L51.80 52.32L51.80 47.60L71 39.76L71 45.84L60.32 49.96'/></svg>">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -129,8 +128,13 @@
                     <div class="portrait-stage" data-tilt>
                         <span class="ring ring-1" aria-hidden="true"></span>
                         <span class="ring ring-2" aria-hidden="true"></span>
-                        <div class="portrait-frame">
-                            <img src="alaa.jpg" alt="Portrait of A'laa Hany Ibrahim" width="900" height="1106">
+                        <div class="portrait-frame protected">
+                            <!-- Only a tile-shuffled image is served; script.js reassembles it here.
+                                 Regenerate with _tools/scramble.html (values must match). -->
+                            <canvas class="portrait-media" width="864" height="1056" role="img"
+                                aria-label="Portrait of A'laa Hany Ibrahim" data-tiles="hero-tiles.jpg"
+                                data-cols="9" data-rows="11" data-gutter="8" data-seed="1511506921"></canvas>
+                            <span class="watermark" aria-hidden="true">&copy; A&rsquo;laa Hany</span>
                         </div>
                         <div class="float-badge badge-a">
                             <i class="fa-solid fa-code" aria-hidden="true"></i> Front-End

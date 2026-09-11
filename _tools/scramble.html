@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<!--
+    Portrait scrambler
+    ------------------
+    Turns a photo into a tile-shuffled JPEG. The portfolio page reassembles it
+    on a <canvas> (see "Scrambled portrait" in script.js), so the only image
+    file a visitor can grab from the Network tab is the scrambled mosaic.
+
+    Usage: open this file in a browser, pick the original photo, download the
+    result and save it as hero-tiles.jpg in the site root. Keep the original
+    photo OUT of the repository.
+
+    The folder name starts with "_" so GitHub Pages (Jekyll) does not publish it.
+    COLS / ROWS / SEED / W / H must match the data-* attributes on the portrait
+    <canvas> in index.html.
+-->
+
+<head>
+    <meta charset="UTF-8">
+    <title>Portrait scrambler</title>
+    <style>
+        body { font: 14px system-ui, sans-serif; margin: 24px; background: #16070c; color: #f7eef1; }
+        .row { display: flex; gap: 24px; flex-wrap: wrap; align-items: flex-start; margin-top: 18px; }
+        figure { margin: 0; }
+        figcaption { margin-top: 6px; color: #aaa; }
+        canvas { width: 280px; height: auto; border: 1px solid #444; border-radius: 8px; }
+        a { color: #ff8fa3; }
+    </style>
+</head>
+
+<body>
+    <h1>Portrait scrambler</h1>
+    <p>Photo: <code>864 × 1056</code>, 9 × 11 tiles of 96 px. Each tile is stored in a 112 px cell with an 8 px
+        gutter of its real neighbouring pixels, so JPEG colour bleed between shuffled cells lands in the gutter
+        (discarded on reassembly) instead of showing as seams. Cells are multiples of 16 px to match JPEG blocks.</p>
+
+    <input type="file" id="file" accept="image/*">
+
+    <div class="row">
+        <figure><canvas id="scrambled"></canvas><figcaption>Scrambled (this is what gets published)</figcaption></figure>
+        <figure><canvas id="check"></canvas><figcaption>Reassembled check</figcaption></figure>
+    </div>
+
+    <p id="out"></p>
+
+    <script>
+        var W = 864, H = 1056, COLS = 9, ROWS = 11, GUTTER = 8, SEED = 1511506921, QUALITY = 0.9;
+        var TW = W / COLS, TH = H / ROWS;                      // visible tile: 96 x 96
+        var CW = TW + 2 * GUTTER, CH = TH + 2 * GUTTER;        // stored cell: 112 x 112
+
+        // Must stay identical to tileOrder() in script.js
+        function tileOrder(n, seed) {
+            var a = seed, p = [], i, j, t;
+            var rnd = function () {
+                a |= 0; a = a + 0x6D2B79F5 | 0;
+                var x = Math.imul(a ^ a >>> 15, 1 | a);
+                x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x;
+                return ((x ^ x >>> 14) >>> 0) / 4294967296;
+            };
+            for (i = 0; i < n; i++) p[i] = i;
+            for (i = n - 1; i > 0; i--) { j = Math.floor(rnd() * (i + 1)); t = p[i]; p[i] = p[j]; p[j] = t; }
+            return p;
+        }
+
+        function scramble(img) {
+            var G = GUTTER;
+
+            // 1. cover-fit the photo into W x H, inside a canvas padded by G on every side
+            var src = document.createElement('canvas');
+            src.width = W + 2 * G; src.height = H + 2 * G;
+            var sc = src.getContext('2d');
+            var s = Math.max(W / img.naturalWidth, H / img.naturalHeight);
+            var sw = W / s, sh = H / s;
+            sc.drawImage(img, (img.naturalWidth - sw) / 2, (img.naturalHeight - sh) / 2, sw, sh, G, G, W, H);
+
+            // 2. fill the padding by stretching the outermost pixels (edge clamp)
+            sc.drawImage(src, G, G, W, 1, G, 0, W, G);                              // top
+            sc.drawImage(src, G, G + H - 1, W, 1, G, G + H, W, G);                  // bottom
+            sc.drawImage(src, G, 0, 1, H + 2 * G, 0, 0, G, H + 2 * G);              // left
+            sc.drawImage(src, G + W - 1, 0, 1, H + 2 * G, G + W, 0, G, H + 2 * G);  // right
+
+            // 3. copy tile s (plus its gutter) into cell order[s]
+            var out = document.getElementById('scrambled');
+            out.width = COLS * CW; out.height = ROWS * CH;
+            var ctx = out.getContext('2d');
+            tileOrder(COLS * ROWS, SEED).forEach(function (d, s) {
+                ctx.drawImage(src,
+                    (s % COLS) * TW, Math.floor(s / COLS) * TH, CW, CH,   // padded source already offsets by G
+                    (d % COLS) * CW, Math.floor(d / COLS) * CH, CW, CH);
+            });
+            return out.toDataURL('image/jpeg', QUALITY);
+        }
+
+        // Same logic as the portfolio page: take each cell's inner tile, drop the gutter.
+        function reassemble(url) {
+            var img = new Image();
+            img.onload = function () {
+                var c = document.getElementById('check');
+                c.width = W; c.height = H;
+                var ctx = c.getContext('2d');
+                tileOrder(COLS * ROWS, SEED).forEach(function (d, s) {
+                    ctx.drawImage(img,
+                        (d % COLS) * CW + GUTTER, Math.floor(d / COLS) * CH + GUTTER, TW, TH,
+                        (s % COLS) * TW, Math.floor(s / COLS) * TH, TW, TH);
+                });
+            };
+            img.src = url;
+        }
+
+        document.getElementById('file').addEventListener('change', function (e) {
+            var f = e.target.files[0];
+            if (!f) return;
+            var img = new Image();
+            img.onload = function () {
+                var url = scramble(img);
+                reassemble(url);
+                window.__scrambled = url;   // used by automation
+                document.getElementById('out').innerHTML =
+                    '<a href="' + url + '" download="hero-tiles.jpg">Download hero-tiles.jpg</a>';
+                URL.revokeObjectURL(img.src);
+            };
+            img.src = URL.createObjectURL(f);
+        });
+    </script>
+</body>
+
+</html>

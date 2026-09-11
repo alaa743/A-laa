@@ -46,6 +46,7 @@ decorate.
 - One-click copy for email and phone, with toast confirmation
 - Downloadable CV
 - Smooth anchor scrolling offset for the fixed header
+- Protected portrait: only a tile-scrambled image is ever served; it is reassembled on a `<canvas>`, and right-click / drag / long-press saving is blocked
 
 **Quality**
 - Accessible: skip link, ARIA labels, semantic landmarks, visible focus rings
@@ -61,7 +62,7 @@ decorate.
 | Markup | Semantic HTML5 |
 | Styling | CSS3 — custom properties, Grid, Flexbox, `backdrop-filter`, `clamp()` |
 | Behaviour | Vanilla JavaScript (ES5-compatible, IIFE-scoped) |
-| APIs | `IntersectionObserver`, `requestAnimationFrame`, Clipboard API |
+| APIs | `IntersectionObserver`, `requestAnimationFrame`, Canvas 2D, Clipboard API |
 | Fonts | Outfit, Inter, Great Vibes (Google Fonts) |
 | Icons | Font Awesome 6 |
 
@@ -74,10 +75,23 @@ A-laa/
 ├── index.html          # Markup and content
 ├── style.css           # Design system, layout, animations, responsive rules
 ├── script.js           # All interactions (single IIFE, no globals)
-├── alaa.jpg            # Hero portrait
+├── hero-tiles.jpg      # Portrait, tile-scrambled (reassembled by script.js)
 ├── Alaa-Hany-CV.pdf    # Downloadable CV
+├── _tools/
+│   └── scramble.html   # Generates hero-tiles.jpg (not published — "_" folders are skipped by Pages)
 └── README.md
 ```
+
+### Changing the portrait
+
+The original photo is deliberately **not** in the repository — only the scrambled version is.
+
+1. Open `_tools/scramble.html` in a browser and pick the new photo.
+2. Download the result and save it as `hero-tiles.jpg` in the site root.
+3. Keep the original photo somewhere private, outside this repo.
+
+The grid, gutter and seed in `_tools/scramble.html` must match the `data-*` attributes on the
+portrait `<canvas>` in `index.html`.
 
 ## Running locally
 
