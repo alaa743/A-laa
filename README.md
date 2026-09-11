@@ -2,7 +2,7 @@
 
 # A&rsquo;laa Hany Ibrahim — Portfolio
 
-**Front-End Web Developer** · Archaeological Information Systems @ Cairo University
+**Front-End Web Developer** · Archaeological Information Systems @ Cairo University 
 
 An animated, fully responsive single-page portfolio built with vanilla HTML, CSS and JavaScript — no frameworks, no build step.
 
